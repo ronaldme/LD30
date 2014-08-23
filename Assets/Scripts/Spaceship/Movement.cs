@@ -1,16 +1,11 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Ship
+namespace Assets.Scripts.Spaceship
 {
     public class Movement : MonoBehaviour
     {
         private float moveSpeed = 5f;
         private float rotateSpeed = 200f;
-
-        private void Awake()
-        {
-            
-        }
 
         private void Update()
         {
@@ -35,19 +30,11 @@ namespace Assets.Scripts.Ship
             if (Input.GetKey(KeyCode.W))
             {
                 transform.position += transform.up * Time.deltaTime * moveSpeed;
+                //transform.rigidbody2D.AddForce(new Vector3(0f, 10f));
             }
             if (Input.GetKey(KeyCode.S))
             {
                 transform.position += -transform.up * Time.deltaTime * moveSpeed;
-                transform.Rotate(transform.position, 90f);
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                transform.position += transform.right * Time.deltaTime * moveSpeed;
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                transform.position += -transform.right * Time.deltaTime * moveSpeed;
             }
         }
     }
