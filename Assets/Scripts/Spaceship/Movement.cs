@@ -27,14 +27,19 @@ namespace Assets.Scripts.Spaceship
 
         private void MoveInput()
         {
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
-                transform.position += transform.up * Time.deltaTime * moveSpeed;
-                //transform.rigidbody2D.AddForce(new Vector3(0f, 10f));
+                Vector3 newPos = transform.up*Time.deltaTime*moveSpeed;
+                
+                transform.position += newPos;
+                Camera.main.transform.position += newPos;
             }
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
-                transform.position += -transform.up * Time.deltaTime * moveSpeed;
+                Vector3 newPos = -transform.up * Time.deltaTime * moveSpeed;
+
+                transform.position += newPos;
+                Camera.main.transform.position += newPos;
             }
         }
     }

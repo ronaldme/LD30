@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Worlds
+﻿namespace Assets.Scripts.World
 {
     public interface IWorld
     {
