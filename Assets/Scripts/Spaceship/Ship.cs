@@ -10,9 +10,11 @@ namespace Assets.Scripts.Spaceship
         public AudioSource shoot;
         public AudioSource death;
 
+        private bool ended;
+
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !ended)
             {
                 shoot.Play();
                 var bullet1 = (GameObject) Instantiate(Resources.Load<GameObject>("Prefabs/Bullet"));
@@ -33,9 +35,13 @@ namespace Assets.Scripts.Spaceship
             if (other.gameObject.tag == Tags.world)
             {
                 death.Play();
-                StartCoroutine("DelayedLevelLoad");
+                var explosions = (GameObject) Instantiate(Resources.Load<GameObject>("Prefabs/Explosions"));
+                explosions.transform.position = transform.position + new Vector3(0f, 0f, -1f);
+                explosions.transform.parent = transform;
+                GetComponent<Movement>().enabled = false;
+                ended = true;
 
-                //Application.LoadLevel(0);
+                StartCoroutine("DelayedLevelLoad");
             }
         }
 

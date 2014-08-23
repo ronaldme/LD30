@@ -19,6 +19,7 @@ namespace Assets.Scripts.Entities
 
             if (timer + resetTime < Time.time)
             {
+                Destroy(gameObject);
             }
         }
 
