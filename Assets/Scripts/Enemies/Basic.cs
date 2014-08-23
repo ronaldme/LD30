@@ -33,7 +33,7 @@ namespace Assets.Scripts.Enemies
             if (timer + resetTime < Time.time)
             {
                 var bullet = (GameObject) Instantiate(Resources.Load<GameObject>("Prefabs/Bullet"));
-                bullet.transform.position = transform.position + new Vector3(0f, 0f, 0f);
+                bullet.transform.position = transform.position;
                 bullet.transform.rotation = transform.rotation;
 
                 timer = Time.time;
