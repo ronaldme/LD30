@@ -34,8 +34,6 @@ namespace Assets.Scripts.Spaceship
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log(canPick);
-            print(counter);
             if (other.gameObject.tag == Tags.world && !canPick && counter == 0)
             {
                 canPick = true;

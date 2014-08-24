@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Helpers;
+﻿using System.Collections;
+using Assets.Scripts.Enemies;
+using Assets.Scripts.Helpers;
 using UnityEngine;
 
 namespace Assets.Scripts.Entities
@@ -7,7 +9,7 @@ namespace Assets.Scripts.Entities
     {
         public bool fromEnemy;
         private float timer;
-        private float resetTime = 1f;
+        private float resetTime = 2f;
 
         private void Start()
         {
@@ -26,9 +28,9 @@ namespace Assets.Scripts.Entities
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.tag != Tags.player)
+            if (other.gameObject.tag == Tags.enemy)
             {
-                print(other.name);
+                other.gameObject.GetComponent<BasicEnemy>().Die();
             }
         }
     }

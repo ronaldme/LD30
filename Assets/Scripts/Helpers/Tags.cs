@@ -6,5 +6,6 @@
         public const string world = "World";
         public const string player = "Player";
         public const string bullet = "Bullet";
+        public const string enemy = "Enemy";
     }
 }
