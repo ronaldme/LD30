@@ -17,6 +17,10 @@ namespace Assets.Scripts.Menu
                 }
 
             }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
         }
     }
 }

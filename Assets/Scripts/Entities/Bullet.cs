@@ -5,6 +5,7 @@ namespace Assets.Scripts.Entities
 {
     public class Bullet : MonoBehaviour
     {
+        public bool fromEnemy;
         private float timer;
         private float resetTime = 1f;
 

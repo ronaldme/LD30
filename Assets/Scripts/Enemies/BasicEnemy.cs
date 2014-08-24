@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Helpers;
+﻿using Assets.Scripts.Entities;
+using Assets.Scripts.Helpers;
 using UnityEngine;
 
 namespace Assets.Scripts.Enemies
@@ -28,7 +29,7 @@ namespace Assets.Scripts.Enemies
                 transform.position = Vector3.MoveTowards(
                     transform.position, up.collider.gameObject.transform.position + Vector3.down * 2,
                     Time.deltaTime * 2f);
-                //Shoot();
+                Shoot();
             }
             if (down && down.collider.tag == Tags.player)
             {
@@ -45,7 +46,7 @@ namespace Assets.Scripts.Enemies
                 var bullet = (GameObject) Instantiate(Resources.Load<GameObject>("Prefabs/Bullet"));
                 bullet.transform.position = transform.position + new Vector3(0f, 1f);
                 bullet.transform.rotation = transform.rotation;
-
+                bullet.GetComponent<Bullet>().fromEnemy = true;
                 timer = Time.time;
             }
         }

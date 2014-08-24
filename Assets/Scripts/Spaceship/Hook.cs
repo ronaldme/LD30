@@ -5,32 +5,51 @@ namespace Assets.Scripts.Spaceship
 {
     public class Hook : MonoBehaviour
     {
-        private bool grabbed;
-        private GameObject planet;
+        public bool canPick;
+        public GameObject planet;
+        public int counter;
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (canPick)
             {
-                if (grabbed)
+                if (Input.GetKeyDown(KeyCode.F) && planet != null)
                 {
+                    // Move the planet under the hook
                     planet.transform.parent = transform.parent;
-                    grabbed = false;
+                    canPick = false;
                 }
-                else
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.F) && planet != null)
                 {
+                    // Drop the planet
                     planet.transform.parent = null;
+                    counter = 0;
                 }
+               
             }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.tag == Tags.world && !grabbed)
+            Debug.Log(canPick);
+            print(counter);
+            if (other.gameObject.tag == Tags.world && !canPick && counter == 0)
             {
+                canPick = true;
                 planet = other.gameObject;
-                grabbed = true;
-            }   
+                counter++;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.gameObject.tag == Tags.world)
+            {
+                canPick = false;
+            }
         }
     }
 }
